@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if diaries %}
+        {% for diary  in diaries %}
+            <p>{{ diary.title }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Oppp! You hvae not write any diary!</p>
+    {% endif %}
+
+{% endblock content %}
