@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import FormView
 from django.urls import reverse_lazy
+from django.views.generic import DetailView, UpdateView, DeleteView
 
 from .forms import DiaryForm
 from .models import Diary
@@ -25,3 +26,18 @@ class AddDiaryView(FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class DetailDiaryView(DetailView):
+    model=Diary
+
+
+class UpdateDiaryView(UpdateView):
+    model=Diary
+    fields='__all__'
+    # success_url=reverse_lazy('detail-diary')
+
+class DeleteDairyView(DeleteView):
+    model=Diary
+    success_url=reverse_lazy('home')
+    

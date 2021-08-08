@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if diaries %}
+    <ul id='notes-list'>
+        {% if diaries %}
         {% for diary  in diaries %}
-            <p>{{ diary.title }}</p>
+            <li><span class="note-date">{{ diary.created |date}}</span><a href="{% url 'detail-diary' diary.id %}"><h3>{{ diary.title }}</h3></a></li>    
         {% endfor %}
-    {% else %}
-        <p>Oppp! You hvae not write any diary!</p>
-    {% endif %}
-
+        {% else %}
+            <p>Oppp! You hvae not write any diary!</p>
+        {% endif %}
+    </ul>
 {% endblock content %}
