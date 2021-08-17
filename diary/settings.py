@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'personalDiary.apps.PersonaldiaryConfig'
+    'personalDiary.apps.PersonaldiaryConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'diary.wsgi.application'
+
+
+LOGIN_REDIRECT_URL = 'personalDiary:home'
+LOGOUT_REDIRECT_URL = 'users:login'
 
 
 # Database

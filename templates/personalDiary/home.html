@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h2>Hello, {{ request.user }}</h2>
+    <p><a href="{% url 'users:logout' %}">Logout</a></p>
     <ul id='notes-list'>
         {% if diaries %}
         {% for diary  in diaries %}
-            <li><span class="note-date">{{ diary.created |date}}</span><a href="{% url 'detail-diary' diary.id %}"><h3>{{ diary.title }}</h3></a></li>    
+            <li><span class="note-date">{{ diary.created |date}}</span><a href="{% url 'personalDiary:detail-diary' diary.id %}"><h3>{{ diary.title }}</h3></a></li>    
         {% endfor %}
         {% else %}
             <p>Oppp! You hvae not write any diary!</p>
