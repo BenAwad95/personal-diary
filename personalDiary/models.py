@@ -11,7 +11,7 @@ class Diary(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse("detail-diary", kwargs={"pk": self.pk})
+        return reverse("personalDiary:detail-diary", kwargs={"pk": self.pk})
     
     def __str__(self):
         name = 'no one' if self.user is None else self.user.username

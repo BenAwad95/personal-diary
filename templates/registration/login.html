@@ -7,7 +7,5 @@
     {{ form.as_p }}
     <input type="submit" value="Login">
 </form>
-
-<a class="inline-btn" href="{% url 'users:password_reset' %}">Reset password</a>
-<a class="inline-btn" href="{% url 'users:register' %}" class="btn-sign up">Register</a>
+<p><a class="inline-btn" href="{% url 'users:register' %}" class="btn-sign up">Register</a> if you do not have account yet</p>
 {% endblock %}

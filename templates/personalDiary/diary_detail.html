@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<a href="{% url 'personalDiary:home' %}">Take me back</a>
+<br>
 <h3>{{ object.title }}</h3>
 <p>{{ object.body }}</p>
 <div>

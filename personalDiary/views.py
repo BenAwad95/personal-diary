@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import FormView
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView, DeleteView, ListView
+from django.views.generic import DetailView, UpdateView, DeleteView, ListView, CreateView
 
 from .forms import DiaryForm
 from .models import Diary
+from django.contrib.auth.models import User
+
 
 APP_NAME = "personalDiary"
 def set_template_name(template_name):
@@ -12,22 +14,20 @@ def set_template_name(template_name):
 
 
 class ListDiaryView(ListView):
-    model=Diary
-
-
+    context_object_name='diaries'
     def get_queryset(self):
-        user = self.request.user
+        user = User.objects.get(username=self.request.user.username)
+        # print(type(user))
         return Diary.objects.filter(user=user).all()
 
-class AddDiaryView(FormView):
-    form_class=DiaryForm
-    # print(reverse('new-diary')) #! here a lesson you have learn from it, use lazy_reverse instead reverse
-    template_name='personalDiary/new_diary.html'
-    success_url=reverse_lazy('home')
 
+class CreateDiaryView(CreateView):
+    model=Diary
+    fields=['title', 'body']
+    template_name='personalDiary/new_diary.html'
 
     def form_valid(self, form):
-        form.save()
+        form.instance.user=self.request.user
         return super().form_valid(form)
 
 
@@ -42,5 +42,5 @@ class UpdateDiaryView(UpdateView):
 
 class DeleteDairyView(DeleteView):
     model=Diary
-    success_url=reverse_lazy('home')
+    success_url=reverse_lazy('personalDiary:home')
     
