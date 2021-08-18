@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 class Diary(models.Model):
+    user = models.ForeignKey(User, verbose_name=_("User"), on_delete=models.CASCADE, null=True)
     title = models.CharField(_("title"), max_length=50)
     body = models.TextField(_("diary body"))
     created = models.DateTimeField(_("diary created date"), auto_now_add=True)
@@ -11,3 +12,8 @@ class Diary(models.Model):
 
     def get_absolute_url(self):
         return reverse("detail-diary", kwargs={"pk": self.pk})
+    
+    def __str__(self):
+        name = 'no one' if self.user is None else self.user.username
+        return f'{name} - {self.title}'
+
