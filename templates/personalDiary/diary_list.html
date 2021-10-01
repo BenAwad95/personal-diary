@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Hello, {{ request.user }}</h2>
-    <p><a href="{% url 'users:logout' %}">Logout</a></p>
+    <div id="user-control">
+        <h2>Hello, {{ request.user }}</h2>
+        <p><a href="{% url 'users:logout' %}">Logout</a></p>
+    </div>
     <p>Add <a href="{% url 'personalDiary:new-diary' %}">New</a> diary</p>
     <ul id='notes-list'>
         {% if diaries %}
