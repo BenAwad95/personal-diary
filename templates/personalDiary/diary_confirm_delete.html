@@ -4,6 +4,6 @@
     <form action="" method="post">
         {% csrf_token %}
         <h3>Delete the "{{ object.title }}" note from the diary?</h3>
-        <button type="submit">Yes</button> <a href="{% url 'personalDiary:detail-diary' object.id %}">No</a>
+        <button class="del-btn" type="submit">Yes</button> <a class="inline-btn" href="{% url 'personalDiary:detail-diary' object.id %}">No</a>
     </form>
 {% endblock content %}

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'personalDiary:home' %}">Take me back</a>
+<a class='btn-dark' href="{% url 'personalDiary:home' %}">&larr; Take me back</a>
 <br>
-<h3>{{ object.title }}</h3>
-<p>{{ object.body }}</p>
-<div>
+<h3 class='title3' >{{ object.title }}</h3>
+<p class='body'>{{ object.body }}</p>
+<div class='btns-container'>
 <a href="{% url 'personalDiary:update-diary' object.id %}">Edit</a> <a href="{% url 'personalDiary:delete-diary' object.id %}">Delete</a>
 </div>
 {% endblock content %}

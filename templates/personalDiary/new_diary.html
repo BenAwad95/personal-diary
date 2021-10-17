@@ -2,6 +2,7 @@
 
 {% block content %}
     <form action="." method="post">
+        <h3>New Diary</h3>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Go</button>
