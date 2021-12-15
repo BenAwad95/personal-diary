@@ -37,7 +37,7 @@ class DetailDiaryView(DetailView):
 
 class UpdateDiaryView(UpdateView):
     model=Diary
-    fields='__all__'
+    fields=['title', 'body']
     # success_url=reverse_lazy('detail-diary')
 
 class DeleteDairyView(DeleteView):
