@@ -29,7 +29,7 @@ class ListDiaryView(ListView):
 
 class CreateDiaryView(CreateView):
     model=Diary
-    fields=['title', 'body']
+    fields=['title', 'body', 'mood']
     template_name='personalDiary/new_diary.html'
 
 
@@ -44,7 +44,7 @@ class CreateDiaryView(CreateView):
         user = request.user
         if user.is_anonymous:
             raise PermissionDenied
-        return super().get(request)
+        return super().post(request)
 
     def form_valid(self, form):
         form.instance.user=self.request.user
