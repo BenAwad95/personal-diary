@@ -38,11 +38,13 @@ class CreateDiaryView(CreateView):
         user = request.user
         if user.is_anonymous:
             raise PermissionDenied
+        return super().get(request)
 
     def post(self, request, *args, **kwargs):
         user = request.user
         if user.is_anonymous:
             raise PermissionDenied
+        return super().get(request)
 
     def form_valid(self, form):
         form.instance.user=self.request.user
